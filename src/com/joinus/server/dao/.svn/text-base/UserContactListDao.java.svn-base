@@ -1,0 +1,71 @@
+package com.joinus.server.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.joinus.server.constant.Constant;
+import com.joinus.server.entity.UserContactList;
+import com.joinus.server.tools.Tools;
+
+/**
+ * 用户通讯录数据库操作层<br>
+ * @author
+ * <ul> 
+ * <li><a href="mailto:qipenghui3056@gmail.com">henrybit</a></li>
+ * </ul>
+ * @version 1.0
+ * @since 2013-4-4
+ */
+public class UserContactListDao extends BaseDao{
+	/**单一实例Dao*/
+	private final static UserContactListDao userContactListDao = new UserContactListDao();
+	/**插入新通讯录记录前缀*/
+	private final static String INSERT_NEW_USERCONTACT = "insert into user_contact_list (id,owner_id,friend_id,phoneNo,deviceNo,name,create_time,update_time) values ";
+	
+	private UserContactListDao() {
+	}
+	
+	/**
+	 * 获取用户通讯录实例<br>
+	 * @return userContactListDao
+	 */
+	public static UserContactListDao getInstance() {
+		return userContactListDao;
+	}
+	
+	/**
+	 * 插入一批通讯录数据<br>
+	 * @param list 通讯录列表
+	 * @return int-成功插入的数据条数
+	 */
+	public int addAllContact(List<UserContactList> list) {
+		List<String> sqlList = new ArrayList<String>();
+		if(list!=null && list.size()>0) {
+			for(UserContactList userContact : list) {
+				if(userContact == null)
+					continue;
+				StringBuilder sql = new StringBuilder(INSERT_NEW_USERCONTACT);
+				sql.append("(null");
+				//owner_id
+				sql.append(",'").append(userContact.getOwnerId()).append("'");
+				//friend_id
+				sql.append(",'").append(userContact.getFriendId()).append("'");
+				//phoneNo
+				sql.append(",'").append(userContact.getPhoneNo()).append("'");
+				//deviceNo
+				sql.append(",'").append(userContact.getDeviceNo()).append("'");
+				//name
+				sql.append(",'").append(userContact.getName()).append("'");
+				//create_time
+				sql.append(",'").append(Tools.getDateFormat(userContact.getCreateTime(), Constant.DATE_YYYY_MM_DD_HH_MM_SS)).append("'");
+				//update_time
+				sql.append(",'").append(Tools.getDateFormat(userContact.getUpdateTime(), Constant.DATE_YYYY_MM_DD_HH_MM_SS)).append("'");
+				sql.append(")");
+				
+				sqlList.add(sql.toString());
+			}
+		}
+		
+		return super.insertAll(sqlList);
+	}
+}

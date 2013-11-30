@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/servlet/meeting
+END
+AgreeMeeting.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/servlet/meeting/AgreeMeeting.java
+END
+GetMeetings.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/servlet/meeting/GetMeetings.java
+END
+SendMeeting.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/servlet/meeting/SendMeeting.java
+END

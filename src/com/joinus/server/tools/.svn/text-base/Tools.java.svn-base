@@ -1,0 +1,50 @@
+package com.joinus.server.tools;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * 常用工具方法<br>
+ * @author henrybit
+ * @version 1.0
+ * @since 2013-4-6
+ */
+public class Tools {
+	/**
+	 * 生成一个不重复的唯一序列ID<br>
+	 * TODO
+	 * @return uid-返回一个唯一uid
+	 */
+	public static String createNewUid() {
+		return "";
+	}
+	
+	/**
+	 * 获取指定日期格式的字符串<br>
+	 * @param date 时间
+	 * @param dateFormat 日期格式
+	 * @return String-时间的字符格式
+	 */
+	public static String getDateFormat(Date date, String dateFormat) {
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+		return sdf.format(date);
+	}
+	
+	/**
+	 * 获取指定字符串的日期对象<br>
+	 * @param date 时间（字符串格式）
+	 * @param dateFormat 日期格式
+	 * @return Date-时间
+	 */
+	public static Date getDateFormate(String date, String dateFormat) {
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+		try {
+			return sdf.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

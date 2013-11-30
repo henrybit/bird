@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/servlet
+END
+UploadContact.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/servlet/UploadContact.java
+END
+InitServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/servlet/InitServlet.java
+END
+BaseServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/servlet/BaseServlet.java
+END

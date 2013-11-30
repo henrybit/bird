@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/entity
+END
+MeetingUsers.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/entity/MeetingUsers.java
+END
+Meeting.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/entity/Meeting.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/entity/User.java
+END
+UserMeetingJoin.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/entity/UserMeetingJoin.java
+END
+UsersRelation.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/entity/UsersRelation.java
+END
+UserContactList.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3/trunk/joinUsServer/src/com/joinus/server/entity/UserContactList.java
+END

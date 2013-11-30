@@ -1,0 +1,170 @@
+package com.joinus.server.dao;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.joinus.server.constant.Constant;
+import com.joinus.server.tools.Tools;
+
+/**
+ * 用户人脉关系数据库操作层<br>
+ * @author
+ * <ul> 
+ * <li><a href="mailto:qipenghui3056@gmail.com">henrybit</a></li>
+ * </ul>
+ * @version 1.0
+ * @since 2013-4-4
+ */
+public class UsersRelationDao extends BaseDao {
+	/**用户DAO单例*/
+	private final static UsersRelationDao usersRelationDao = new UsersRelationDao();
+	/**插入新关系SQL前缀*/
+	private final static String INSERT_NEW_RELATION = "insert into users_relation (id,user1_id,user2_id,status,relation_value,create_time,update_time) values ";
+	/**更新关系SQL前缀*/
+	private final static String UPDATE_RELATION_STATUS = "update users_relation ";
+	/**查询关系SQL前缀*/
+	private final static String QUERY_USER_RELATION = "select * from users_relation ";
+	/**查询关系总数SQL前缀*/
+	private final static String QUERY_USER_RELATION_COUNT = "select count(0) from users_relation ";
+
+	private UsersRelationDao() {
+	}
+	
+	/**
+	 * 用户关系单例<br>
+	 * @return UsersRelationDao 用户关系Dao
+	 */
+	public static UsersRelationDao getInstance() {
+		return usersRelationDao;
+	}
+	
+	/**
+	 * 返回指定用户的好友总数<br>
+	 * @param uid 用户ID
+	 * @return int-好友总数
+	 */
+	public int getFriendTotal(String uid) {
+		int totalNum = 0;
+		
+		StringBuilder sql = new StringBuilder(QUERY_USER_RELATION_COUNT);
+		sql.append(" where user1_id='").append(uid).append("'");
+		sql.append(" and status=").append(Constant.USERRELATION_STATUS_FRIEND);
+		
+		ResultSet rs = super.query(sql.toString());
+		
+		try {
+			totalNum = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return totalNum;
+	}
+	
+	/**
+	 * 获取好友ID列表<br>
+	 * @param uid 用户ID
+	 * @param begin 查询开始位置
+	 * @param limit 查询一次最多数据个数
+	 * @return List-好友ID列表
+	 */
+	public List<String> getFriendList(String uid, int begin, int limit) {
+		List<String> friendList = new ArrayList<String>();
+		
+		StringBuilder sql = new StringBuilder(QUERY_USER_RELATION);
+		sql.append(" where user1_id='").append(uid).append("'");
+		sql.append(" and status=").append(Constant.USERRELATION_STATUS_FRIEND);
+		sql.append(" limit ").append(begin).append(",").append(limit);
+		
+		ResultSet resultSet = super.query(sql.toString());
+		try {
+			while(resultSet.next()) {
+				String friendId = resultSet.getString("user2_id");
+				friendList.add(friendId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return friendList;
+	}
+	
+	/**
+	 * 更新两个用户的关系状态为朋友<br>
+	 * @param user1Id 用户1ID
+	 * @param user2Id 用户2ID
+	 * @return boolean-如果更新朋友状态成功，返回true；否则false。
+	 */
+	public boolean makeFriend(String user1Id, String user2Id) {
+		StringBuilder sql = new StringBuilder(UPDATE_RELATION_STATUS);
+		sql.append(" set status=").append(Constant.USERRELATION_STATUS_FRIEND);
+		sql.append(" where user1_id='").append(user1Id).append("'");
+		sql.append(" and user2_id='").append(user2Id).append("'");
+		return super.update(sql.toString());
+	}
+	
+	/**
+	 * 创建一个用户关系数据<br>
+	 * @param user1Id 用户1ID
+	 * @param user2Id 用户2ID
+	 * @param status 关系状态(1-邀请中,2-好友,3-推荐好友,4-陌生人)
+	 * @param relationValue 关系值(1<=>100，数值越大，关系度越近，主要用于stauts=3时，推荐最相近的朋友)
+	 * @return long-创建成功的主键ID，失败返回－1.
+	 */
+	public long createNewUserRelation(String user1Id, String user2Id, int status, float relationValue) {
+		return this.createNewUserRelation(user1Id, user2Id, status, relationValue, null, null);
+	}
+	
+	/**
+	 * 创建一个用户关系数据<br>
+	 * @param user1Id 用户1ID
+	 * @param user2Id 用户2ID
+	 * @param status 关系状态(1-邀请中,2-好友,3-推荐好友,4-陌生人)
+	 * @param relationValue 关系值(1<=>100，数值越大，关系度越近，主要用于stauts=3时，推荐最相近的朋友)
+	 * @param createTime 创建时间
+	 * @param updateTime 更新时间
+	 * @return long-创建成功的主键ID，失败返回－1.
+	 */
+	public long createNewUserRelation(String user1Id, String user2Id, int status, float relationValue, String createTime, String updateTime) {
+		StringBuilder sql = new StringBuilder(INSERT_NEW_RELATION);
+		//id auto increatement by db
+		sql.append("(null");
+		
+		//user1Id
+		sql.append(",'").append(user1Id).append("'");
+		
+		//user2Id
+		sql.append(",'").append(user2Id).append("'");
+		
+		//status
+		sql.append(",").append(status);
+		
+		//relationValue
+		sql.append(",").append(relationValue);
+		
+		//createTime and updateTime
+		Date now = new Date();
+		if(createTime == null) {
+			createTime = Tools.getDateFormat(now, Constant.DATE_YYYY_MM_DD_HH_MM_SS);
+		}
+		if(updateTime == null) {
+			updateTime = Tools.getDateFormat(now, Constant.DATE_YYYY_MM_DD_HH_MM_SS);
+		}
+		sql.append(",'").append(createTime).append("'");
+		sql.append(",'").append(updateTime).append("'");
+		
+		sql.append(")");
+		
+		ResultSet rs = super.insert(sql.toString());
+		long id = -1L;
+		try {
+			rs.next();
+			id = rs.getLong(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+}

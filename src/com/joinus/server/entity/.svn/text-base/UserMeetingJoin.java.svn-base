@@ -1,0 +1,66 @@
+package com.joinus.server.entity;
+
+/**
+ * 用户参加活动信息<br>
+ * @author henrybit
+ * @version 1.0
+ * @since 2013-4-18
+ */
+public class UserMeetingJoin {
+	/**主键*/
+	private long id;
+	/**参与用户ID*/
+	private String uid;
+	/**活动ID*/
+	private long meetingId;
+	/**1-有效,-1-无效*/
+	private int status;
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the uid
+	 */
+	public String getUid() {
+		return uid;
+	}
+	/**
+	 * @param uid the uid to set
+	 */
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+	/**
+	 * @return the meetingId
+	 */
+	public long getMeetingId() {
+		return meetingId;
+	}
+	/**
+	 * @param meetingId the meetingId to set
+	 */
+	public void setMeetingId(long meetingId) {
+		this.meetingId = meetingId;
+	}
+	/**
+	 * @return the status
+	 */
+	public int getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(int status) {
+		this.status = status;
+	}
+}

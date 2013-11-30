@@ -1,0 +1,152 @@
+package com.joinus.server.entity;
+
+import java.util.Date;
+
+/**
+ * 用户通讯录<br>
+ * @author henrybit
+ * @version 1.0
+ * @since 2013-4-5
+ */
+public class UserContactList {
+	/**通讯录ID*/
+	private long id;
+	/**拥有者ID*/
+	private String ownerId;
+	/**朋友ID*/
+	private String friendId;
+	/**电话号码*/
+	private String phoneNo;
+	/**设备ID*/
+	private String deviceNo;
+	/**通讯录备注名称*/
+	private String name;
+	/**创建时间:LONG*/
+	private long createTimeLong;
+	/**创建时间:DATE*/
+	private Date createTime;
+	/**更新时间:LONG*/
+	private long updateTimeLong;
+	/**更新时间:DATE*/
+	private Date updateTime;
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the ownerId
+	 */
+	public String getOwnerId() {
+		return ownerId;
+	}
+	/**
+	 * @param ownerId the ownerId to set
+	 */
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+	/**
+	 * @return the friendId
+	 */
+	public String getFriendId() {
+		return friendId;
+	}
+	/**
+	 * @param friendId the friendId to set
+	 */
+	public void setFriendId(String friendId) {
+		this.friendId = friendId;
+	}
+	/**
+	 * @return the phoneNo
+	 */
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+	/**
+	 * @param phoneNo the phoneNo to set
+	 */
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	/**
+	 * @return the deviceNo
+	 */
+	public String getDeviceNo() {
+		return deviceNo;
+	}
+	/**
+	 * @param deviceNo the deviceNo to set
+	 */
+	public void setDeviceNo(String deviceNo) {
+		this.deviceNo = deviceNo;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * @return the createTimeLong
+	 */
+	public long getCreateTimeLong() {
+		return createTimeLong;
+	}
+	/**
+	 * @param createTimeLong the createTimeLong to set
+	 */
+	public void setCreateTimeLong(long createTimeLong) {
+		this.createTimeLong = createTimeLong;
+	}
+	/**
+	 * @return the createTime
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * @param createTime the createTime to set
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * @return the updateTimeLong
+	 */
+	public long getUpdateTimeLong() {
+		return updateTimeLong;
+	}
+	/**
+	 * @param updateTimeLong the updateTimeLong to set
+	 */
+	public void setUpdateTimeLong(long updateTimeLong) {
+		this.updateTimeLong = updateTimeLong;
+	}
+	/**
+	 * @return the updateTime
+	 */
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	/**
+	 * @param updateTime the updateTime to set
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+}

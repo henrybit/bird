@@ -219,40 +219,16 @@
     <servlet-name>FriendList</servlet-name>
     <url-pattern>/friend/friendList</url-pattern>
   </servlet-mapping>
+  
   <servlet>
-    <description></description>
-    <display-name>UploadContact</display-name>
-    <servlet-name>UploadContact</servlet-name>
-    <servlet-class>com.joinus.server.servlet.UploadContact</servlet-class>
-    <init-param>
-      <description>用户ID</description>
-      <param-name>uid</param-name>
-      <param-value></param-value>
-    </init-param>
-    <init-param>
-      <description>好友ID</description>
-      <param-name>friend_id</param-name>
-      <param-value></param-value>
-    </init-param>
-    <init-param>
-      <description>电话号码</description>
-      <param-name>phoneNo</param-name>
-      <param-value></param-value>
-    </init-param>
-    <init-param>
-      <description>设备ID</description>
-      <param-name>deviceNo</param-name>
-      <param-value></param-value>
-    </init-param>
-    <init-param>
-      <description>好友备注</description>
-      <param-name>name</param-name>
-      <param-value></param-value>
-    </init-param>
+  	<description></description>
+    <display-name>CreatePlazaActivity</display-name>
+    <servlet-name>CreatePlazaActivity</servlet-name>
+    <servlet-class>com.joinus.server.servlet.plazaActivity.CreatePlazaActivity</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UploadContact</servlet-name>
-    <url-pattern>/upload/contact</url-pattern>
+    <servlet-name>CreatePlazaActivity</servlet-name>
+    <url-pattern>/plaza/createNew</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

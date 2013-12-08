@@ -1,6 +1,7 @@
 package com.joinus.server.entity;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -220,5 +221,26 @@ public class PlazaActivity {
 	 */
 	public void setSeq(int seq) {
 		this.seq = seq;
+	}
+	
+	/**
+	 * 将PlazaActivity对象转换成HashMap存储<br>
+	 * @return HashMap
+	 */
+	public HashMap<String, String> toHashMap() {
+		HashMap<String, String> nameValueMap = new HashMap<String, String>();
+		nameValueMap.put("id", String.valueOf(id));
+		nameValueMap.put("name", name);
+		nameValueMap.put("tag",String.valueOf(tag));
+		nameValueMap.put("content", content);
+		nameValueMap.put("createUserId", createUserId);
+		nameValueMap.put("joinUsersId", joinUsersId);
+		nameValueMap.put("latitude", latitude);
+		nameValueMap.put("longitude", longitude);
+		nameValueMap.put("address", address);
+		nameValueMap.put("startTimeLong", String.valueOf(startTimeLong));
+		nameValueMap.put("headPic", headPic);
+		nameValueMap.put("bigPic", bigPic);
+		return nameValueMap;
 	}
 }

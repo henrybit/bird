@@ -1,39 +1,34 @@
-package com.joinus.server.servlet.relation;
+package com.joinus.server.servlet.plazaActivity;
 
+import com.joinus.server.manager.activity.PlazaActivityManager;
+import com.joinus.server.servlet.BaseServlet;
 import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.joinus.server.manager.relation.FriendManager;
-import com.joinus.server.servlet.BaseServlet;
-
 /**
- * Servlet implementation class FriendList
+ * Servlet implementation class GetPlazaActivity
  */
-public class FriendList extends BaseServlet {
+public class GetPlazaActivity extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-	
-	
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
-    public FriendList() {
+    public GetPlazaActivity() {
         super();
-        /**请求的参数列表*/
-    	parametersName = new String[]{"uid","fields","begin","limit"};
+        parametersName = new String[]{"id","name","tag","content","createUserId","joinUsersId","latitude","longitude","address","startTime","headPic","bigPic"};
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HashMap<String, String> parameters = doParameters(request);
-		String json = FriendManager.getInstance().friendList(parameters);
+		String json = PlazaActivityManager.getInstance().createPlazaActivity(parameters);
 		response.getOutputStream().write(json.getBytes());
 	}
 
@@ -41,7 +36,6 @@ public class FriendList extends BaseServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		this.doGet(request, response);
 	}
 

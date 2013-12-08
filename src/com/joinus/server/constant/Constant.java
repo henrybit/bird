@@ -22,9 +22,9 @@ public class Constant {
 	public final static int CREATENEWUSER_STATUS_INIT = 0;
 	
 	/**创建新活动成功:1*/
-	public final static int CREATENEWMEETING_STATUS_SUCCESS = 1;
+	public final static int CREATE_NEW_ACTIVITY_STATUS_SUCCESS = 1;
 	/**创建新活动失败:-1*/
-	public final static int CREATENEWMEETING_STATUS_FAILED = -1;
+	public final static int CREATE_NEW_ACTIVITY_STATUS_FAILED = -1;
 	
 	/**加入新活动成功:1*/
 	public final static int AGREEMEETING_STATUS_SUCCESS = 1;

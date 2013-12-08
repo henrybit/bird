@@ -1,4 +1,4 @@
-package com.joinus.server.servlet.user;
+package com.joinus.server.servlet.plazaActivity;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,31 +8,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.joinus.server.manager.user.UserManager;
+import com.joinus.server.manager.activity.PlazaActivityManager;
 import com.joinus.server.servlet.BaseServlet;
 
 /**
- * Servlet implementation class GetNewId
+ * Servlet implementation class CreatePlazaActivity
  */
-public class GetNewId extends BaseServlet {
+public class CreatePlazaActivity extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-	
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
-    public GetNewId() {
-        super();
-    	/**请求的参数列表*/
-        parametersName = new String[]{"name","uid","phone_no","device_no","password"};
+    public CreatePlazaActivity() {
+    	super();
+    	parametersName = new String[]{"name","tag","content","createUserId","joinUsersId","latitude","longitude","address","startTime","headPic","bigPic"};
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HashMap<String, String> parameters = doParameters(request);
-		String json = UserManager.getInstance().createNewUser(parameters);
+		String json = PlazaActivityManager.getInstance().getPlazaActivity(parameters);
 		response.getOutputStream().write(json.getBytes());
 	}
 
@@ -40,7 +38,7 @@ public class GetNewId extends BaseServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		this.doGet(request, response);
 	}
+
 }

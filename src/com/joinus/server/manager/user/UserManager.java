@@ -7,10 +7,8 @@ import java.util.List;
 import net.sf.json.JSONObject;
 
 import com.joinus.server.constant.Constant;
-import com.joinus.server.dao.UserContactListDao;
 import com.joinus.server.dao.UserInfoDao;
 import com.joinus.server.entity.User;
-import com.joinus.server.entity.UserContactList;
 
 /**
  * 用户管理相应操作(控制单例)<br>
@@ -22,8 +20,6 @@ public class UserManager {
 	
 	/**用户DAO实例*/
 	private final static UserInfoDao userDao = UserInfoDao.getInstance();
-	/**用户通讯录DAO实例*/
-	private final static UserContactListDao userContactListDao = UserContactListDao.getInstance();
 	/**用户管理实例*/
 	private final static UserManager userManager = new UserManager();
 	/***/
@@ -45,6 +41,7 @@ public class UserManager {
 	 * @return {“status”:1,"uid ": “223497”}
 	 */
 	public String createNewUser(HashMap<String, String> parameters) {
+		/*
 		String id = parameters.get("uid");
 		String name = parameters.get("name");
 		String phoneNo = parameters.get("phone_no");
@@ -64,6 +61,8 @@ public class UserManager {
 		jsonObject.accumulate("uid", id);
 		String json = jsonObject.toString();
 		return json;
+		*/
+		return "";
 	}
 	
 	/**
@@ -72,11 +71,14 @@ public class UserManager {
 	 * @return boolean-如果用户存在，返回true;否则返回false.
 	 */
 	public boolean isExsitUser(String uid) {
+		/*
 		if(uid==null || uid.isEmpty())
 			return false;
 		User user = userDao.getUserInfo(uid);
 		if(user != null)
 			return true;
+		return false;
+		*/
 		return false;
 	}
 	
@@ -86,6 +88,7 @@ public class UserManager {
 	 * @return {"uid":"121jf","name":"henrybit","sex":1,"picUrl":"http://1.jpg","phoneNo":"12128139018","deviceNo":"i190219090","create_time":"1232019831980"}
 	 */
 	public String getUserInfo(HashMap<String, String> parameters) {
+		/*
 		String userInfo = "";
 		String uid = parameters.get("uid");
 		if(uid==null || uid.isEmpty())
@@ -103,6 +106,8 @@ public class UserManager {
 			userInfo = jsonObject.toString();
 		}
 		return userInfo;
+		*/
+		return "";
 	}
 	
 	/**
@@ -111,6 +116,7 @@ public class UserManager {
 	 * @return {"status":1,"error_code":""}
 	 */
 	public String uploadContactList(List<HashMap<String, String>> parametersList) {
+		/*
 		int insertCount = -1;
 		if(parametersList!=null && parametersList.size()>0) {
 			List<UserContactList> list = new ArrayList<UserContactList>();
@@ -141,5 +147,7 @@ public class UserManager {
 			jsonObject.accumulate("error_code", "");
 		}
 		return jsonObject.toString();
+		*/
+		return "";
 	}
 }

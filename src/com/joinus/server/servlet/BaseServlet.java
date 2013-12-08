@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 基础Sevlet<br>
  * @author henrybit
- * @version 
+ * @version 1.0
  * @since 2013-4-6
  */
 public class BaseServlet extends HttpServlet {

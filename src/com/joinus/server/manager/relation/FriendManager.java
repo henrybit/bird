@@ -45,6 +45,7 @@ public class FriendManager {
 	 * ]"num":2,"totalNum":10}
 	 */
 	public String friendList(HashMap<String, String> parameters) {
+		/*
 		JSONObject jsonObject = new JSONObject();
 		String uid = parameters.get("uid");
 		String beginStr = parameters.get("begin");
@@ -104,6 +105,8 @@ public class FriendManager {
 		}
 		
 		return jsonObject.toString();
+		*/
+		return "";
 	}
 	
 	/**
@@ -112,6 +115,7 @@ public class FriendManager {
 	 * @return {"status":1,"error_code":""}
 	 */
 	public String agreeFriend(HashMap<String, String> parameters) {
+		/*
 		String uid = parameters.get("uid");
 		String friendId = parameters.get("friend_id");
 		
@@ -126,6 +130,8 @@ public class FriendManager {
 			jsonObject.accumulate("error_code", "failed");
 		}
 		return jsonObject.toString();
+		*/
+		return "";
 	}
 	
 	/**
@@ -134,6 +140,7 @@ public class FriendManager {
 	 * @return {"status":1,"error_code":""}
 	 */
 	public String addFriend(HashMap<String, String> parameters) {
+		/*
 		String uid = parameters.get("uid");
 		String friendId = parameters.get("friend_id");
 		String phoneNo = parameters.get("phone_no");
@@ -156,5 +163,7 @@ public class FriendManager {
 			jsonObject.accumulate("error_code", "failed");
 		}
 		return jsonObject.toString();
+		*/
+		return "";
 	}
 }

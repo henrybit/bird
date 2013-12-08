@@ -1,21 +1,8 @@
 package com.joinus.server.manager.activity;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import com.joinus.server.constant.Constant;
-import com.joinus.server.constant.ActivityConstant;
 import com.joinus.server.dao.ActivityDao;
-import com.joinus.server.dao.MeetingUsersDao;
-import com.joinus.server.dao.UserMeetingJoinDao;
-import com.joinus.server.entity.Activity;
-import com.joinus.server.entity.ActivityUsers;
-import com.joinus.server.tools.Tools;
 
 /**
  * 活动管理<br>
@@ -26,8 +13,6 @@ import com.joinus.server.tools.Tools;
 public class ActivityManager {
 	/**活动Dao实例*/
 	private final static ActivityDao meetingDao = ActivityDao.getInstance();
-	/**用户参加活动Dao实例*/
-	private final static UserMeetingJoinDao userMeetingJoinDao = UserMeetingJoinDao.getInstance();
 	/**活动Manager实例*/
 	private final static ActivityManager meetingManager = new ActivityManager();
 	
@@ -48,8 +33,9 @@ public class ActivityManager {
 	 * @return {"status":1,"error_code":"","meeting_id":123}
 	 */
 	public String sendMeeting(HashMap<String, String> parameters) {
+		/*
 		String tagStr = parameters.get("tag");
-		int tag = ActivityConstant.MEETING_TAG_ACTIVE;
+		int tag = ActivityConstant.ACTIVITY_TAG_ACTIVE;
 		try {
 			tag = Integer.valueOf(tagStr);
 		} catch (Exception e){
@@ -66,8 +52,6 @@ public class ActivityManager {
 		if(userList!=null&&userList.isEmpty()) {
 			//1.创建活动信息
 			meetingId = meetingDao.createNewMessage(tag, startTime, content, createUserId, ActivityConstant.MEETING_STATUS_PREPARE, address);
-			//2.创建活动和用户关联关系
-			meetingUsersId = meetingUsersdao.createNewMeetingUsers(meetingId, createUserId, userList);
 		}
 		
 		JSONObject jsonObject = new JSONObject();
@@ -80,6 +64,8 @@ public class ActivityManager {
 		jsonObject.accumulate("meeting_id", meetingId);
 		
 		return jsonObject.toString();
+		*/
+		return "";
 	}
 	
 	/**
@@ -96,6 +82,7 @@ public class ActivityManager {
 	 * }
 	 */
 	public String getMeeting(HashMap<String, String> parameters) {
+		/*
 		JSONObject jsonObject = new JSONObject();
 		String uid = parameters.get("uid");
 		//id#tag#content#create_user_id#status#address#start_time
@@ -141,6 +128,8 @@ public class ActivityManager {
 		jsonObject.accumulate("meetings_num", meetingList.size());
 		jsonObject.accumulate("update_time", (new Date()).getTime());
 		return jsonObject.toString();
+		*/
+		return "";
 	}
 	
 	/**
@@ -149,6 +138,7 @@ public class ActivityManager {
 	 * @return {"status":1,"error_code":""}
 	 */
 	public String agreeMeeting(HashMap<String, String> parameters) {
+		/*
 		String uid = parameters.get("uid");
 		String meetingIdStr = parameters.get("meeting_id");
 		long meetingId = -1;
@@ -169,5 +159,7 @@ public class ActivityManager {
 			jsonObject.accumulate("error_code", "insert error");
 		}
 		return jsonObject.toString();
+		*/
+		return "";
 	}
 }

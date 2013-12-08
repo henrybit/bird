@@ -24,6 +24,8 @@ public class PlazaActivityDao extends BaseDao<PlazaActivity> {
 	
 	/**查询SQL前缀*/
 	private final static String QUERY_PLAZA_ACTIVITY = "select * from plaza_activity ";
+	/**插入SQL前缀*/
+	private final static String INSERT_PLAZA_ACTIVITY = "insert into plaza_activity values(";
 	/**PLAZA_ACTIVITY表所有字段（按顺序排列）*/
 	private final String[] columns = new String[]{"id","name","tag","content","createUserId","joinUsersId","lat","lng","address","startTime","headPic"};
 	/**PLAZA_ACTIVITY表所有字段类型（按顺序排列）*/
@@ -41,6 +43,78 @@ public class PlazaActivityDao extends BaseDao<PlazaActivity> {
 	}
 	
 	/**
+	 * 创建一个广场活动<br>
+	 * @param name 广场活动名
+	 * @param tag 广场活动类型
+	 * @param content 广场活动内容
+	 * @param createUserId 广场活动发起者
+	 * @param joinUsersId 广场活动参与者
+	 * @param lat 纬度
+	 * @param lng 经度
+	 * @param address 地址
+	 * @param startTime 开始时间
+	 * @param headPic 活动图片
+	 * @return long-广场活动ID
+	 */
+	public long createPlazaActivity(String name, int tag, String content, String createUserId, 
+			String joinUsersId, double lat, double lng, String address, long startTime ,String headPic) {
+		StringBuilder sql = new StringBuilder(INSERT_PLAZA_ACTIVITY);
+		sql.append("null,");
+		sql.append("'").append(name).append("',");
+		sql.append(tag).append(",");
+		sql.append("'").append(content).append("',");
+		sql.append("'").append(createUserId).append("',");
+		sql.append("'").append(joinUsersId).append("',");
+		sql.append(lat).append(",");
+		sql.append(lng).append(",");
+		sql.append("'").append(address).append("',");
+		sql.append(startTime).append(",");
+		sql.append("'").append(headPic).append("'");
+		sql.append(")");
+		
+		ResultSet resultSet = super.insert(sql.toString());
+		long id = -1;
+		try {
+			id = resultSet.getLong(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return id;
+	}
+	
+	/**
+	 * 创建一个广场活动<br>
+	 * @param plazaActivity
+	 * @return long-广场活动ID
+	 */
+	public long createPlazaActivity(PlazaActivity plazaActivity) {
+		StringBuilder sql = new StringBuilder(INSERT_PLAZA_ACTIVITY);
+		sql.append("null,");
+		sql.append("'").append(plazaActivity.getName()).append("',");
+		sql.append(plazaActivity.getTag()).append(",");
+		sql.append("'").append(plazaActivity.getContent()).append("',");
+		sql.append("'").append(plazaActivity.getCreateUserId()).append("',");
+		sql.append("'").append(plazaActivity.getJoinUsersId()).append("',");
+		sql.append(plazaActivity.getLatitude()).append(",");
+		sql.append(plazaActivity.getLongitude()).append(",");
+		sql.append("'").append(plazaActivity.getAddress()).append("',");
+		sql.append(plazaActivity.getStartTimeLong()).append(",");
+		sql.append("'").append(plazaActivity.getHeadPic()).append("'");
+		sql.append(")");
+		
+		ResultSet resultSet = super.insert(sql.toString());
+		long id = -1;
+		try {
+			id = resultSet.getLong(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return id;
+	}
+	
+	/**
 	 * 获取在指定时间以后的所有活动信息(注意：如果该时间未指定，强制使用当天0点时间)<br>
 	 * @param startTime 指定时间
 	 * @return List
@@ -53,7 +127,25 @@ public class PlazaActivityDao extends BaseDao<PlazaActivity> {
 		}
 		long startTimeLong = startTime.getTime();
 		StringBuilder sql = new StringBuilder(QUERY_PLAZA_ACTIVITY);
-		sql.append(columns[9]).append(">=").append(startTimeLong);
+		sql.append("where ").append(columns[9]).append(">=").append(startTimeLong);
+		
+		ResultSet rs = super.query(sql.toString());
+		
+		plazaActivityList = parseResultSet(rs);
+		
+		return plazaActivityList;
+	}
+	
+	/**
+	 * 获取指定id的广场活动信息<br>
+	 * @param id 广场活动id
+	 * @return List
+	 */
+	public List<PlazaActivity> getPlazaActivityById(long id) {
+		List<PlazaActivity> plazaActivityList = new ArrayList<PlazaActivity>();
+		
+		StringBuilder sql = new StringBuilder(QUERY_PLAZA_ACTIVITY);
+		sql.append("where ").append(columns[0]).append("=").append(id);
 		
 		ResultSet rs = super.query(sql.toString());
 		

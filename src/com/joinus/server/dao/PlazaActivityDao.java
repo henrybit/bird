@@ -86,9 +86,9 @@ public class PlazaActivityDao extends BaseDao<PlazaActivity> {
 	/**
 	 * 创建一个广场活动<br>
 	 * @param plazaActivity
-	 * @return long-广场活动ID
+	 * @return PlazaActivity-广场活动ID
 	 */
-	public long createPlazaActivity(PlazaActivity plazaActivity) {
+	public PlazaActivity createPlazaActivity(PlazaActivity plazaActivity) {
 		StringBuilder sql = new StringBuilder(INSERT_PLAZA_ACTIVITY);
 		sql.append("null,");
 		sql.append("'").append(plazaActivity.getName()).append("',");
@@ -104,14 +104,15 @@ public class PlazaActivityDao extends BaseDao<PlazaActivity> {
 		sql.append(")");
 		
 		ResultSet resultSet = super.insert(sql.toString());
-		long id = -1;
+		plazaActivity.setId(0);
 		try {
-			id = resultSet.getLong(0);
+			long id = resultSet.getLong(0);
+			plazaActivity.setId(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return id;
+		return plazaActivity;
 	}
 	
 	/**

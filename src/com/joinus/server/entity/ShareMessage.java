@@ -1,6 +1,7 @@
 package com.joinus.server.entity;
 
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * 活动分享消息<br>
@@ -107,5 +108,20 @@ public class ShareMessage {
 	 */
 	public void setShareTimeLong(Long shareTimeLong) {
 		this.shareTimeLong = shareTimeLong;
+	}
+	
+	/**
+	 * 返回key-value结构<br>
+	 * @return hashmap
+	 */
+	public HashMap<String, String> toHashMap() {
+		HashMap<String, String> hashMap = new HashMap<String, String>();
+		hashMap.put("id", String.valueOf(id));
+		hashMap.put("aid", String.valueOf(aid));
+		hashMap.put("shareUid", shareUid);
+		hashMap.put("content", content);
+		hashMap.put("pic", pic);
+		hashMap.put("shareTime", String.valueOf(shareTimeLong));
+		return hashMap;
 	}
 }

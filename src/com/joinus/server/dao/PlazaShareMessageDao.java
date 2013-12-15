@@ -19,7 +19,9 @@ public class PlazaShareMessageDao extends ShareMessageDao {
 	
 	private final static PlazaShareMessageDao plazaShareMessageDao = new PlazaShareMessageDao();
 	/**查询SQL前缀*/
-	protected final static String QUERY_SHARE_MESSAGE = "select * from friend_share_message";
+	protected final static String QUERY_SHARE_MESSAGE = "select * from plaza_share_message ";
+	/**插入SQL前缀*/
+	protected final static String INSERT_SHARE_MESSAGE = "insert into plaza_share_message values(";
 	
 	protected PlazaShareMessageDao() {
 	}
@@ -55,7 +57,8 @@ public class PlazaShareMessageDao extends ShareMessageDao {
 		}
 		long shareTimeLong = shareTime.getTime();
 		StringBuilder sql = new StringBuilder(QUERY_SHARE_MESSAGE);
-		sql.append(columns[5]).append(">=").append(shareTimeLong);
+		sql.append(" where ").append(columns[1]).append("=").append(aid);
+		sql.append(" and ").append(columns[5]).append(">=").append(shareTimeLong);
 		
 		ResultSet rs = super.query(sql.toString());
 		try {
@@ -64,5 +67,32 @@ public class PlazaShareMessageDao extends ShareMessageDao {
 			e.printStackTrace();
 		}
 		return shareMessageList;
+	}
+	
+	/**
+	 * 创建一个广场活动分享信息<br>
+	 * @param shareMessage
+	 * @return shareMessage
+	 */
+	public ShareMessage createShareMessage(ShareMessage shareMessage) {
+		StringBuilder sql = new StringBuilder(INSERT_SHARE_MESSAGE);
+		sql.append("null,");
+		sql.append(shareMessage.getAid()).append(",");
+		sql.append("'").append(shareMessage.getShareUid()).append("',");
+		sql.append("'").append(shareMessage.getContent()).append("',");
+		sql.append("'").append(shareMessage.getPic()).append("',");
+		sql.append(shareMessage.getShareTimeLong());
+		sql.append(")");
+		
+		ResultSet resultSet = super.insert(sql.toString());
+		shareMessage.setId(0);
+		try {
+			long id = resultSet.getLong(0);
+			shareMessage.setId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return shareMessage;
 	}
 }
